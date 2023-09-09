@@ -1,4 +1,6 @@
 import * as express from 'express';
+import 'express-async-errors';
+import Router from './routes';
 
 class App {
   public app: express.Express;
@@ -8,6 +10,7 @@ class App {
 
     this.config();
 
+    this.router();
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
   }
@@ -22,6 +25,10 @@ class App {
 
     this.app.use(express.json());
     this.app.use(accessControl);
+  }
+
+  private router(): void {
+    this.app.use(Router);
   }
 
   public start(PORT: string | number): void {

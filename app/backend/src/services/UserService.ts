@@ -18,4 +18,4 @@ export default class UserService {
     const token = await jwt.sign({ id: user.id }, process.env.JWT_SECRET as string);
     return { status: 200, message: { token } };
   }
-};
+}

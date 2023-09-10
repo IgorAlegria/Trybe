@@ -1,4 +1,4 @@
-const allTeamsMock = [
+export const allTeamsMock = [
     {
       "id": 1,
       "teamName": "Avaí/Kindermann"
@@ -65,11 +65,8 @@ const allTeamsMock = [
     }
   ];
 
-  const teamMock = {
+  export const teamMock = {
       "id": 4,
       "teamName": "Corinthians"
-  }
-    export {
-      allTeamsMock,
-      teamMock
-    };
+    }
+  

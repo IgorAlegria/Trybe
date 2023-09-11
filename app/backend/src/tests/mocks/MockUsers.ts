@@ -9,3 +9,13 @@
     email: 'admin@admin.com',
     password: 'secret_admin'
   }
+
+  export const invalidEmail = {
+    email: 'admin@admin',
+    password: 'secret_admin'
+  }
+
+  export const invalidPassword = {
+    email: 'admin@admin.com',
+    password: '12345'
+  }

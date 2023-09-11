@@ -14,6 +14,16 @@ export default class ValidationLogin {
       );
     }
 
+    const regex = /\S+@\S+\.\S+/;
+
+    if (!regex.test(email)) {
+      return res.status(401).json({ message: 'Invalid email or password' });
+    }
+
+    if (password.length < 6) {
+      return res.status(401).json({ message: 'Invalid email or password' });
+    }
+
     next();
   }
 }

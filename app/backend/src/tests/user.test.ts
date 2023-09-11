@@ -44,7 +44,7 @@ describe('Users test', () => {
           .send(invalidEmail)
 
         expect(response).to.have.status(401);
-        expect(response.body).to.haveOwnProperty('Invalid email or password');
+        expect(response.body.message).to.be.equal('Invalid email or password');
       })
 
       it('should login with invalid password credentials', async function () {
@@ -57,7 +57,7 @@ describe('Users test', () => {
           .send(invalidPassword)
 
         expect(response).to.have.status(401);
-        expect(response.body).to.haveOwnProperty('Invalid email or password');
+        expect(response.body.message).to.be.equal('Invalid email or password');
       })
 
      

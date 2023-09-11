@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcryptjs';
-import * as jwt from 'jsonwebtoken';
+import JWT from '../Utils/JWT';
 import UserModel from '../models/UsersModel';
 import { IUserModel } from '../Interfaces/Users/IUserModel';
 
@@ -15,7 +15,8 @@ export default class UserService {
     if (!validatePassword) {
       return { status: 401, message: { message: 'Invalid email or password' } };
     }
-    const token = await jwt.sign({ id: user.id }, process.env.JWT_SECRET as string);
+    const token = await JWT.sign({ id: user.id,
+      email: user.email });
     return { status: 200, message: { token } };
   }
 }

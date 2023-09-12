@@ -16,7 +16,7 @@ export default class JWT {
     try {
       return verify(token, JWT.secret) as JwtPayload;
     } catch (e) {
-      return 'Token must be a valid Token';
+      return 'Token must be a valid token';
     }
   }
 }

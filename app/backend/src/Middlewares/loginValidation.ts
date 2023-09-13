@@ -2,11 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import JWT from '../Utils/JWT';
 
 export default class ValidationLogin {
-  static async validate(
-    req: Request,
-    res:Response,
-    next: NextFunction,
-  ): Promise<Response | void> {
+  static async validate(req: Request, res:Response, next: NextFunction): Promise<Response | void> {
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -33,10 +29,12 @@ export default class ValidationLogin {
     if (!token) {
       return res.status(401).json({ message: 'Token not found' });
     }
-    const validToken = JWT.verify(token);
+    const tokenBearer = token.split(' ')[1];
+    const validToken = JWT.verify(tokenBearer);
     if (validToken === 'Token must be a valid token') {
       return res.status(401).json({ message: validToken });
     }
+    req.body.user = validToken;
     next();
   }
 }

@@ -23,4 +23,9 @@ export default class MatcheService {
     const data = getAllMatches.filter((match) => match.inProgress === false);
     return { status: 'SUCCESSFUL', data };
   }
+
+  public async finishMatch(id:number): Promise<ServiceResponse<{ message: string }>> {
+    await this.matches.finishMatch(id);
+    return { status: 'SUCCESSFUL', data: { message: 'Finished' } };
+  }
 }

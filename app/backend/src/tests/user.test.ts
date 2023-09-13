@@ -61,7 +61,7 @@ describe('Users test', () => {
       it('Should return a 401 error for missing token in Authorization header', async function () {
         const response = await chai.request(app).get('/login/role').send();
     
-        expect(response).to.equal(401);
+        expect(response).to.have.status(401);
         expect(response.body).to.have.key('message');
       });
     
@@ -74,7 +74,7 @@ describe('Users test', () => {
           .set('authorization', 'invalidToken')
           .send();
 
-        expect(response).to.equal(401);
+        expect(response).to.have.status(401);
         expect(response.body).to.deep.equal({ message: 'Token must be a valid token' });
       });
     });

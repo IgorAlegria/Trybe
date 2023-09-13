@@ -3,7 +3,7 @@ import { IMatchesModel } from '../Interfaces/Matches/IMatchesModel';
 import MatchesModel from '../models/MatchesModel';
 import { ServiceResponse } from '../Interfaces/ServiceResponse';
 
-export default class MatcheService {
+export default class MatchesService {
   constructor(
     private matches: IMatchesModel = new MatchesModel(),
   ) { }
@@ -27,5 +27,14 @@ export default class MatcheService {
   public async finishMatch(id:number): Promise<ServiceResponse<{ message: string }>> {
     await this.matches.finishMatch(id);
     return { status: 'SUCCESSFUL', data: { message: 'Finished' } };
+  }
+
+  public async updateMatch(
+    id: number,
+    homeTeam: number,
+    awayTeam: number,
+  ): Promise<boolean> {
+    await this.matches.updateMatch(id, homeTeam, awayTeam);
+    return true;
   }
 }

@@ -22,7 +22,12 @@ export default class MatcheController {
   public async updateMatch(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
     const { homeTeamGoals, awayTeamGoals } = req.body;
-    await this.matchesService.updateMatch(+id, +homeTeamGoals, +awayTeamGoals);
-    return res.status(200).json({ message: 'Updated' });
+    const response = await this.matchesService.updateMatch(+id, +homeTeamGoals, +awayTeamGoals);
+    return res.status(mapStatusHTTP(response.status)).json(response.data);
+  }
+
+  public async create(_req: Request, res: Response) {
+    const serviceResponse = await this.matchesService.create(_req.body);
+    return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
   }
 }

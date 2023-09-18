@@ -39,4 +39,16 @@ export default class MatchesModel implements IMatchesModel {
     );
     return true;
   }
+
+  public async create(data: IMatches): Promise<IMatches> {
+    const { homeTeamId, homeTeamGoals, awayTeamId, awayTeamGoals } = data;
+    const match = await this.model.create({
+      homeTeamId,
+      homeTeamGoals,
+      awayTeamId,
+      awayTeamGoals,
+      inProgress: true,
+    });
+    return match;
+  }
 }

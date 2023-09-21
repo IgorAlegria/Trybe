@@ -8,7 +8,7 @@ import { ITeamsModel } from '../Interfaces/Teams/ITeamsModel';
 export default class MatchesService {
   constructor(
     private matches: IMatchesModel = new MatchesModel(),
-    private teamsModel: ITeamsModel = new TeamsModel(),
+    private teams: ITeamsModel = new TeamsModel(),
   ) { }
 
   public async findAll(inProgress: string): Promise<ServiceResponse<IMatches[]>> {
@@ -42,8 +42,8 @@ export default class MatchesService {
   }
 
   public async create(data: IMatches): Promise<ServiceResponse<IMatches>> {
-    const homeTeam = await this.teamsModel.findById(data.homeTeamId);
-    const awayTeam = await this.teamsModel.findById(data.awayTeamId);
+    const homeTeam = await this.teams.findById(data.homeTeamId);
+    const awayTeam = await this.teams.findById(data.awayTeamId);
 
     if (data.homeTeamId === data.awayTeamId) {
       return {

@@ -108,6 +108,10 @@ export default class ClassificationService {
         totalLosses: this.losses(),
         goalsFavor: this.favor(),
         goalsOwn: this.own(),
+        goalsBalance: this.favor() - this.own(),
+        efficiency: Number(
+          ((this.totalPoints() / (team.length * 3)) * 100).toFixed(2),
+        ),
       };
     });
   }

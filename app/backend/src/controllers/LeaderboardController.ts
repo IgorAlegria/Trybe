@@ -7,7 +7,9 @@ export default class LeaderboardController {
   ) { }
 
   public async get(req: Request, res: Response) {
-    const response = await this.leaderboardService.home();
-    res.status(200).json(response);
+    const url = req.baseUrl.split('/');
+    const { data } = await this.leaderboardService
+      .getClassifications(url[2] === undefined ? 'leaderboard' : url[2]);
+    res.status(200).json(data);
   }
 }

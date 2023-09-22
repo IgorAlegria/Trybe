@@ -1,15 +1,14 @@
 import { Request, Response } from 'express';
 import LeaderboardService from '../services/LeaderboardService';
+import mapStatusHTTP from '../Utils/mapStatusHTTP';
 
 export default class LeaderboardController {
   constructor(
-    private leaderboardService = new LeaderboardService(),
-  ) { }
+    private leaderboardService: LeaderboardService = new LeaderboardService(),
+  ) {}
 
-  public async get(req: Request, res: Response) {
-    const url = req.baseUrl.split('/');
-    const { data } = await this.leaderboardService
-      .getClassifications(url[2] === undefined ? 'leaderboard' : url[2]);
-    res.status(200).json(data);
+  public async home(req: Request, res: Response): Promise<Response> {
+    const response = await this.leaderboardService.getLeaderboard('home');
+    return res.status(mapStatusHTTP(response.status)).json(response.data);
   }
 }

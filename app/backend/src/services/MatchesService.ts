@@ -1,4 +1,4 @@
-import { IMatches } from '../Interfaces/Matches/IMatches';
+import IMatches from '../Interfaces/Matches/IMatches';
 import { IMatchesModel } from '../Interfaces/Matches/IMatchesModel';
 import MatchesModel from '../models/MatchesModel';
 import { ServiceResponse } from '../Interfaces/ServiceResponse';

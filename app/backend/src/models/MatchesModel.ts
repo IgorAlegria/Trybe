@@ -1,4 +1,4 @@
-import { IMatches } from '../Interfaces/Matches/IMatches';
+import IMatches from '../Interfaces/Matches/IMatches';
 import { IMatchesModel } from '../Interfaces/Matches/IMatchesModel';
 import SequelizeMatches from '../database/models/SequelizeMatches';
 import SequelizeTeams from '../database/models/SequelizeTeams';

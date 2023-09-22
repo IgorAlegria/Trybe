@@ -52,6 +52,9 @@ export default class UtilsLeaderboard {
     if (board === 'home') {
       return UtilsLeaderboard.allMatchesHomeTeamId(matches, teamId);
     }
+    if (board === 'away') {
+      return UtilsLeaderboard.allMatchesAwayTeamId(matches, teamId);
+    }
     return UtilsLeaderboard.allMatchesFinishedWithTeamId(matches, teamId);
   }
 
@@ -65,6 +68,9 @@ export default class UtilsLeaderboard {
     allMatchesFinished.forEach((match) => {
       if (match.homeTeamId === teamId) {
         counter += match.homeTeamGoals;
+      }
+      if (match.awayTeamId === teamId) {
+        counter += match.awayTeamGoals;
       }
     });
     return counter;
@@ -80,6 +86,9 @@ export default class UtilsLeaderboard {
     allMatchesFinished.forEach((match) => {
       if (match.homeTeamId === teamId) {
         counter += match.awayTeamGoals;
+      }
+      if (match.awayTeamId === teamId) {
+        counter += match.homeTeamGoals;
       }
     });
     return counter;

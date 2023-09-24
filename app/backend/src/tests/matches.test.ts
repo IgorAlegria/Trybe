@@ -14,7 +14,9 @@ import {
     updatedMatches,
     allMatchesMock, 
     allMatchesFinishedMock, 
-    allMatchesProgressMock 
+    allMatchesProgressMock,
+    errorUpdatedMatches,
+    notFounddMatches
 } from './mocks/MockMatches';
 import { loginMock } from './mocks/MockUsers'
 
@@ -69,6 +71,26 @@ describe('Testando o retorno da model SequelizeMatches', () => {
     
         expect(status).to.eq(200);
         expect(body).to.deep.equal({ message: 'Updated' });
+      });
+
+      it('Testando se retorna erro ao tentar atualizando uma partida terminada', async function (){
+        sinon.stub(SequelizeMatches, 'update').resolves();
+        const login = await chai.request(app).post('/login').send(loginMock)
+        const token = login.body.token
+        const { status, body } = await chai.request(app).patch('/matches/1').set('Authorization', `'Bearer' ${token}`).send(errorUpdatedMatches);
+    
+        expect(status).to.eq(409);
+        expect(body).to.deep.equal({ message: 'Matches is finish' });
+      });
+
+      it('Testando se retorna erro ao colocar id de uma partida inexistente', async function (){
+        sinon.stub(SequelizeMatches, 'update').resolves();
+        const login = await chai.request(app).post('/login').send(loginMock)
+        const token = login.body.token
+        const { status, body } = await chai.request(app).patch('/matches/999').set('Authorization', `'Bearer' ${token}`).send(notFounddMatches);
+    
+        expect(status).to.eq(404);
+        expect(body).to.deep.equal({ message: 'Match not found' });
       });
 
       it('Testando se é possivel criar uma partida', async function (){

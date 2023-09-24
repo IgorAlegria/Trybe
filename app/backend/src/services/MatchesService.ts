@@ -37,6 +37,15 @@ export default class MatchesService {
     homeTeam: number,
     awayTeam: number,
   ): Promise<ServiceResponse<{ message: string }>> {
+    const findFinishedMatches = await this.matches.findById(id);
+    if (!findFinishedMatches) {
+      return { status: 'NOT_FOUND', data: { message: 'Match not found' } };
+    }
+
+    if (findFinishedMatches.inProgress === false) {
+      return { status: 'CONFLICT', data: { message: 'Matches is finish' } };
+    }
+
     await this.matches.updateMatch(id, homeTeam, awayTeam);
     return { status: 'SUCCESSFUL', data: { message: 'Updated' } };
   }

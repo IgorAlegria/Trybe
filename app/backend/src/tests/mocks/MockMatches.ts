@@ -1352,10 +1352,22 @@ export const allMatchesProgressMock = [
 ]
 
 export const updatedMatches = {
-        "id": 41,
-        "homeTeamGoals": 3,
-        "awayTeamGoals": 1
-      }
+    "id": 41,
+    "homeTeamGoals": 3,
+    "awayTeamGoals": 1
+}
+
+export const errorUpdatedMatches = {
+    "id": 1,
+    "homeTeamGoals": 3,
+    "awayTeamGoals": 1
+}
+
+export const notFounddMatches = {
+    "id": 999,
+    "homeTeamGoals": 3,
+    "awayTeamGoals": 1
+}
 
 export const createMatch = {
     "homeTeamId": 16, 
@@ -1363,7 +1375,7 @@ export const createMatch = {
     "homeTeamGoals": 2,
     "awayTeamGoals": 2,
     "inProgress": true,
-  }
+}
 
 export const returnCreatedMatche = {
     "id": 49,
@@ -1380,20 +1392,20 @@ export const equalTeamsCreateMatch = {
     "homeTeamGoals": 2,
     "awayTeamGoals": 2,
     "inProgress": true,
-  }
+}
 
-  export const notFoundTeamsCreateMatch = {
+export const notFoundTeamsCreateMatch = {
     "homeTeamId": 36, 
     "awayTeamId": 8, 
     "homeTeamGoals": 2,
     "awayTeamGoals": 2,
     "inProgress": true,
-  }
+}
 
-  export const errorCreateMatch = {
+export const errorCreateMatch = {
     "homeTeamId": 9, 
     "awayTeamId": 8, 
 	"homeTeamGoals": '',
     "awayTeamGoals": 2,
     "inProgress": true,
-  }
+}

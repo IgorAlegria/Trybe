@@ -8,7 +8,7 @@ import SequelizeUser from '../database/models/SequelizeUser'
 import * as bcrypt from 'bcryptjs'
 import * as jwt from 'jsonwebtoken'
 import JWT from '../Utils/JWT';
-import { user, login, invalidEmail, invalidPassword } from './mocks/MockUsers'
+import { user, loginMock, invalidEmail, invalidPassword } from './mocks/MockUsers'
 
 import { Response } from 'superagent';
 
@@ -26,7 +26,7 @@ describe('Users test', () => {
       
         const response = await chai.request(app)
           .post('/login')
-          .send(login)
+          .send(loginMock)
 
         expect(response).to.have.status(200);
         expect(response.body).to.haveOwnProperty('token');

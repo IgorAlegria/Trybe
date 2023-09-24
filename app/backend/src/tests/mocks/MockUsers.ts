@@ -19,3 +19,8 @@
     email: 'admin@admin.com',
     password: '12345'
   }
+
+  export const nonExistentUser = {
+    email: 'error@admin.com',
+    password: 'secret_admin'
+  }
